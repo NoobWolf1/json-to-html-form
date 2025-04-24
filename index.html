@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WIFY JSON Form Test</title>
+    <style>
+        form div {
+            margin-bottom: 0.25rem;
+            display: flex;
+            flex-direction: column;
+            max-width: 25%;
+        }
+        label {
+            display: inline-block;
+            margin-right: 0.75rem;
+        }
+        button {
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+<h1>WIFY JSON Form Test</h1>
+
+<form id="myForm">
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    const formDataDefinition = [
+      {
+        "key": "user_name",
+        "label": "Name",
+        "type": "text",
+        "maxLength": "50"
+      },
+      {
+        "key": "mobile_no",
+        "label": "Mobile number",
+        "type": "mobile_number"
+      },
+      {
+        "key": "email",
+        "label": "Email",
+        "type": "email"
+      },
+    ];
+
+    function createFormFields(data) {
+        const form = document.getElementById('myForm');
+        const submitButton = form.querySelector('button[type="submit"]');
+
+        data.forEach(fieldData => {
+            const fieldContainer = document.createElement('div');
+            const label = document.createElement('label');
+            label.setAttribute('for', fieldData.key);
+            label.textContent = fieldData.label + ':'; 
+            const input = document.createElement('input');
+            let inputType = fieldData.type;
+            input.setAttribute('type', inputType);
+            input.setAttribute('id', fieldData.key);
+            input.setAttribute('name', fieldData.key); 
+            input.setAttribute('placeholder', `Enter ${fieldData.label}`);
+            input.required = true; 
+            if (fieldData.maxLength) {
+                input.setAttribute('maxlength', fieldData.maxLength);
+            }
+            fieldContainer.appendChild(label);
+            fieldContainer.appendChild(input);
+
+            form.insertBefore(fieldContainer, submitButton);
+        });
+    }
+
+    function handleFormSubmit(event) {
+        event.preventDefault(); 
+        alert('Submitted successfully');
+
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        createFormFields(formDataDefinition);
+
+        const formElem = document.getElementById('myForm');
+        formElem.addEventListener('submit', handleFormSubmit);
+    });
+
+</script>
+
+</body>
+</html>
