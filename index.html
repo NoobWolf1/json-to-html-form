@@ -67,6 +67,9 @@
             if (fieldData.maxLength) {
                 input.setAttribute('maxlength', fieldData.maxLength);
             }
+            if (fieldData.type === 'mobile_number') {
+            input.setAttribute('pattern', '[0-9]{10}');
+            }
             fieldContainer.appendChild(label);
             fieldContainer.appendChild(input);
 
