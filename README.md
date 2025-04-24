@@ -15,6 +15,10 @@ This project dynamically generates an HTML form based on a predefined JSON struc
 2. Open `index.html` in a web browser.
 3. The form will be generated automatically based on the JSON structure defined in the script.
 
+## Live Demo
+
+You can view the live demo of this project [here](https://noobwolf1.github.io/json-to-html-form/).
+
 ## JSON Structure
 
 The form fields are defined in the `formDataDefinition` array within the `<script>` tag in `index.html`. Each field object includes:
@@ -44,3 +48,4 @@ const formDataDefinition = [
     "type": "email"
   }
 ];
+```
